@@ -1,37 +1,29 @@
-import homePageImage from "./images/coffee.jpg";
+// home.js (or whatever module boots the page)
+import coffeeImage from "./images/coffee.jpg";
+import "./styles.css";          // ensure the CSS above is bundled
 
-// this.books.forEach((book) => {
-//       const bookCard = document.createElement("div");
-//       bookCard.classList.add("book-card");
-//       bookCard.setAttribute("data-id", book.id);
+export default function createHomePage() {
+    /* regular page content — stays the same */
+    const container = document.createElement("div");
+    container.classList.add("main-container");
 
-//       bookCard.innerHTML = `
-//         <h3>${book.title}</h3>
-//         <p><strong>Author:</strong> ${book.author}</p>
-//         <p><strong>Pages:</strong> ${book.pages}</p>
-//         <p><strong>Read:</strong> <button class="toggle-read-btn">${book.read ? "Yes" : "No"}</button></p>
-//         <div class="buttons">
-//           <button class="delete-btn">Delete</button>
-//         </div>
-//       `;
+    const mainText = document.createElement("h1");
+    mainText.classList.add("main-text");
+    mainText.textContent = "coffee that just works";
 
-//       libraryContainer.appendChild(bookCard);
-//     });
+    const subtext = document.createElement("p");
+    subtext.classList.add("sub-text");
+    subtext.textContent = "choose your own kind of coffee, anything";
 
-export default (function CreateHomePage() {
-    const mainContainer = document.querySelector("#content");
-    const newContainer = document.createElement("div");
-    newContainer.classList.add("main-container");
-
-    newContainer.innerHTML = `
-    <h1>Hello potanginamo</h1>
-    
-    
-    `;
+    /* --- one‑time full‑viewport background layer ------------- */
+    if (!document.querySelector(".fullscreen-bg")) {  // make sure we add it just once
+        const bg = document.createElement("div");
+        bg.className = "fullscreen-bg";
+        bg.style.backgroundImage = `url(${coffeeImage})`;
+        document.body.appendChild(bg);
+    }
 
 
-    
-    
-    mainContainer.appendChild(newContainer);
-}) ();
-
+    container.append(mainText, subtext);
+    return container;  // your render() helper will place this in #content
+}
