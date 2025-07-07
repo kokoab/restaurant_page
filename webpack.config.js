@@ -19,6 +19,13 @@ module.exports = {
       template: "./src/template.html",
     }),
   ],
+  resolve: {
+    alias: {
+      HomePageComponent: path.resolve(__dirname, "./src/home.js"),
+      MenuPageComponent: path.resolve(__dirname, "./src/about.js"),
+      AboutPageComponent: path.resolve(__dirname, "./src/about.js")
+    }
+  },
   module: {
     rules: [
       {
